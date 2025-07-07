@@ -36,8 +36,6 @@ yarn-error.log*
 next-env.d.ts
 
 /serverSocket/node_modules
-/serverSocket/docker-compose.yml
-/serverSocket/Dockerfile
 /serverSocket/yarn.lock
 
 .env
