@@ -41,3 +41,8 @@ next-env.d.ts
 /serverSocket/yarn.lock
 
 .env
+
+
+# docker
+Dockerfile
+docker-compose.yml
