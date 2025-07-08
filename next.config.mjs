@@ -11,6 +11,15 @@ const nextConfig = {
     swcTraceProfiling: true,
     forceSwcTransforms: true,
   },
+  basePath: '',
+  assetPrefix: '',
+  trailingSlash: false,
+  serverRuntimeConfig: {
+    PROJECT_ROOT: __dirname,
+  },
+  publicRuntimeConfig: {
+    staticFolder: '/static',
+  },
 };
 
 export default nextConfig;
