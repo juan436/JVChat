@@ -34,7 +34,9 @@ function DashboardPage() {
   const [lastMessages, setLastMessages] = useState([]);
 
   const [currentConversationMessages, setCurrentConversationMessages] = useState([]);
-  const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL || 'http://socket-server:4000';
+  const SOCKET_URL = process.env.NODE_ENV === 'production' 
+    ? 'https://jvchat.jvserver.com'
+    : 'http://localhost:4000';
   
   useEffect(() => {
     const loadAvatars = async () => {
@@ -85,7 +87,10 @@ function DashboardPage() {
   // useEffect para conectar al socket
   useEffect(() => {
     const socketInitializer = async () => {
-      socketRef.current = io(SOCKET_URL, { reconnection: false });
+      socketRef.current = io(SOCKET_URL, { 
+        reconnection: false,
+        path: '/socket.io'
+      });
 
       socketRef.current.on('connect', () => {
         if (userId && username && avatarId) {
