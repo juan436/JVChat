@@ -128,7 +128,10 @@ JVChat/
 
 ---
 
-## Créditos
+## Autor
 
-Desarrollado por [Tu Nombre o Equipo].  
-¡Contribuciones y sugerencias son bienvenidas!
+- **Juan Villegas**
+- [LinkedIn](https://www.linkedin.com/in/juan-villegas-aaa05b20a/)
+- [GitHub](https://github.com/juan436)
+
+---
