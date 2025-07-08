@@ -5,6 +5,7 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import Avatar from 'avataaars';
 import asApi from '@/apiAxios/asApi';
 import avatars from '@/public/data/avatars.json';
+export const dynamic = "force-dynamic";
 
 const SelectAvatar = () => {
     const searchParams = useSearchParams();
