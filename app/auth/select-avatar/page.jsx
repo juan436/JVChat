@@ -1,13 +1,14 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Avatar from 'avataaars';
 import asApi from '@/apiAxios/asApi';
 import avatars from '@/public/data/avatars.json';
 export const dynamic = "force-dynamic";
 
-const SelectAvatar = () => {
+// Componente envuelto para manejar useSearchParams
+function SelectAvatarContent() {
     const searchParams = useSearchParams();
     const router = useRouter();
     const [selectedAvatar, setSelectedAvatar] = useState(null);
@@ -164,6 +165,25 @@ const SelectAvatar = () => {
             <div className="absolute top-0 left-0 w-32 h-32 border-t-2 border-l-2 border-blue-500/30 rounded-tl-3xl"></div>
             <div className="absolute bottom-0 right-0 w-32 h-32 border-b-2 border-r-2 border-cyan-400/30 rounded-br-3xl"></div>
         </div>
+    );
+};
+
+// Componente principal con Suspense
+const SelectAvatar = () => {
+    return (
+        <Suspense fallback={<div className="flex justify-center items-center min-h-screen bg-slate-900">
+            <div className="flex space-x-2">
+                {[0, 1, 2].map((i) => (
+                    <div
+                        key={i}
+                        className="w-3 h-3 bg-blue-500 rounded-full animate-bounce"
+                        style={{ animationDelay: `${i * 0.2}s` }}
+                    ></div>
+                ))}
+            </div>
+        </div>}>
+            <SelectAvatarContent />
+        </Suspense>
     );
 };
 
