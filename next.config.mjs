@@ -15,7 +15,8 @@ const nextConfig = {
   assetPrefix: '',
   trailingSlash: false,
   serverRuntimeConfig: {
-    PROJECT_ROOT: __dirname,
+    // Usamos import.meta.url en lugar de __dirname para módulos ES
+    PROJECT_ROOT: '.',
   },
   publicRuntimeConfig: {
     staticFolder: '/static',
