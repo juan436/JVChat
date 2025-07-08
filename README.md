@@ -1,36 +1,134 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# JVChat
 
-## Getting Started
+**JVChat** es una aplicación de mensajería instantánea en tiempo real, desarrollada con tecnologías modernas como Next.js, React, Socket.IO y MongoDB. Permite a los usuarios registrarse, personalizar su perfil, gestionar contactos y conversar de forma fluida y segura.
 
-First, run the development server:
+---
+
+## Características principales
+
+- **Registro y autenticación de usuarios** con JWT
+- **Selección de avatar** personalizado al crear cuenta
+- **Chat en tiempo real** usando Socket.IO
+- **Gestión de contactos**: buscar, agregar y aceptar solicitudes de amistad
+- **Notificaciones** de mensajes y solicitudes en tiempo real
+- **Historial de mensajes** persistente y sincronizado
+- **Indicadores de conexión** y mensajes no leídos
+- **Interfaz responsiva** y moderna con Tailwind CSS
+- **Sincronización entre múltiples sesiones** abiertas del mismo usuario
+
+---
+
+## Tecnologías utilizadas
+
+- **Frontend:**  
+  - Next.js 14  
+  - React 18  
+  - Tailwind CSS  
+  - Socket.IO Client  
+  - JWT (jsonwebtoken)  
+
+- **Backend:**  
+  - Node.js  
+  - Express  
+  - Socket.IO  
+  - MongoDB & Mongoose  
+  - Bcrypt (hashing de contraseñas)  
+
+---
+
+## Instalación y ejecución local
+
+### 1. Clona el repositorio
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/tuusuario/JVChat.git
+cd JVChat
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Instala las dependencias
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```bash
+yarn install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### 3. Configura las variables de entorno
 
-## Learn More
+Crea un archivo `.env.local` en la raíz del proyecto con las siguientes variables:
 
-To learn more about Next.js, take a look at the following resources:
+```env
+MONGODB_URI=mongodb://localhost:27017/jvchat
+JWT_SECRET=secret_key
+NEXT_PUBLIC_SOCKET_URL=http://localhost:4000
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 4. Inicia el backend (servidor Socket.IO y API)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```bash
+node serverSocket/server.js
+```
 
-## Deploy on Vercel
+### 5. En otra terminal, inicia el frontend (Next.js)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+yarn dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+La aplicación estará disponible en [http://localhost:3000](http://localhost:3000)
+
+---
+
+## Usuarios y pruebas
+
+1. Abre la aplicación en [http://localhost:3000](http://localhost:3000)
+2. Regístrate con un correo y contraseña
+3. Selecciona un avatar
+4. En otra ventana o navegador, regístrate con otro usuario
+5. Busca y envía una solicitud de amistad
+6. Acepta la solicitud desde el otro usuario
+7. ¡Comienza a chatear en tiempo real!
+
+---
+
+## Estructura del proyecto
+
+```
+JVChat/
+├── app/                # Código fuente del frontend (Next.js)
+│   ├── api/            # Rutas de la API
+│   ├── auth/           # Páginas de autenticación
+│   └── dashboard/      # Páginas del dashboard
+├── components/         # Componentes de React reutilizables
+├── serverSocket/       # Servidor backend (Express + Socket.IO)
+├── models/             # Modelos de datos (Mongoose)
+├── public/             # Recursos estáticos
+└── styles/             # Estilos globales (Tailwind)
+```
+
+---
+
+## Notas importantes
+
+- Asegúrate de tener MongoDB instalado y corriendo localmente
+- El servidor Socket.IO debe estar en ejecución para el chat en tiempo real
+- El frontend corre en el puerto 3000 por defecto
+- El backend corre en el puerto 4000 por defecto
+- Para desarrollo, puedes usar `yarn dev` en modo desarrollo
+
+---
+
+## Solución de problemas
+
+### Problema: No se conecta el socket
+- Verifica que el servidor backend esté en ejecución
+- Revisa que la URL del socket en `.env.local` sea correcta
+
+### Problema: No se guardan los mensajes
+- Asegúrate que MongoDB esté corriendo
+- Verifica la conexión a la base de datos en `MONGODB_URI`
+
+---
+
+## Créditos
+
+Desarrollado por [Tu Nombre o Equipo].  
+¡Contribuciones y sugerencias son bienvenidas!
