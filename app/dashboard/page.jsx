@@ -34,7 +34,8 @@ function DashboardPage() {
   const [lastMessages, setLastMessages] = useState([]);
 
   const [currentConversationMessages, setCurrentConversationMessages] = useState([]);
-
+  const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL || 'http://socket-server:4000';
+  
   useEffect(() => {
     const loadAvatars = async () => {
       try {
@@ -84,7 +85,7 @@ function DashboardPage() {
   // useEffect para conectar al socket
   useEffect(() => {
     const socketInitializer = async () => {
-      socketRef.current = io('http://localhost:4000', { reconnection: false });
+      socketRef.current = io(SOCKET_URL, { reconnection: false });
 
       socketRef.current.on('connect', () => {
         if (userId && username && avatarId) {
@@ -595,7 +596,7 @@ function DashboardPage() {
   const getUserNameById = (id) => {
     const allUser = Allusers.find(user => user._id === id);
     if (allUser) return allUser.username;
-    
+
     const connectedUser = connectedUsers.find(user => user.userId === id);
     if (connectedUser) return connectedUser.username;
 
